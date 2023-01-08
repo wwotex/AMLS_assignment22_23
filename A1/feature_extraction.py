@@ -5,13 +5,16 @@ import cv2
 import dlib
 
 # how much data to use
-N = 5000
+training_N = 5000
+test_N = 1000
 
 # define paths
 base_dir = os.path.dirname(__file__)
 assignment_dir = os.path.normpath(base_dir + os.sep + os.pardir)
-dataset_dir = os.path.join(assignment_dir,'Datasets\\celeba')
-images_dir = os.path.join(dataset_dir,'img')
+training_set_dir = os.path.join(assignment_dir,'Datasets\\celeba')
+test_set_dir = os.path.join(assignment_dir,'Datasets\\celeba_test')
+training_images_dir = os.path.join(training_set_dir,'img')
+test_images_dir = os.path.join(test_set_dir,'img')
 labels_filename = 'labels.csv'
 
 detector = dlib.get_frontal_face_detector()
@@ -81,8 +84,10 @@ def run_dlib_shape(image):
 
     return dlibout, resized_image
 
-def extract_features_labels():
-
+def extract_features_labels(training):
+    images_dir = training_images_dir if training else test_images_dir
+    dataset_dir = training_set_dir if training else test_set_dir
+    N = training_N if training else test_N
     # array of image paths
     image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)[:N]]
     

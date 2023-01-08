@@ -9,21 +9,15 @@ import time
 
 def get_data():
     
-    X, y = fe.extract_features_labels()
+    tr_X, tr_y = fe.extract_features_labels(training=True)
+    te_X, te_y = fe.extract_features_labels(training=False)
     
-    # Y = np.array([y, -(y - 1)]).T
-    
-    tr_X, te_X, tr_Y, te_Y = train_test_split(X, y, test_size=0.10, random_state=42)
-    
-    # tr_X = X[:80]
-    # tr_Y = Y[:80]
-    # te_X = X[80:]
-    # te_Y = Y[80:]
+    # tr_X, te_X, tr_Y, te_Y = train_test_split(X, y, test_size=0.10, random_state=42)
 
     train_N = tr_X.shape[0]
     test_N = te_X.shape[0]
 
-    return train_N, test_N, tr_X, tr_Y, te_X, te_Y
+    return train_N, test_N, tr_X, tr_y, te_X, te_y
 
 def img_SVM(training_images, training_labels, test_images, test_labels):
     classifier = svm.SVC(kernel='linear')
@@ -39,7 +33,7 @@ def img_SVM(training_images, training_labels, test_images, test_labels):
 
 start_time = time.time()
 
-train_N, test_N, tr_X, tr_Y, te_X, te_Y= get_data()
-pred=img_SVM(tr_X.reshape((train_N, 68*2)), tr_Y, te_X.reshape((test_N, 68*2)), te_Y)
+train_N, test_N, tr_X, tr_y, te_X, te_y= get_data()
+pred=img_SVM(tr_X.reshape((train_N, 68*2)), tr_y, te_X.reshape((test_N, 68*2)), te_y)
 
 print("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
