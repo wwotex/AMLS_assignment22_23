@@ -1,0 +1,185 @@
+Datetime: 2023-01-08 17:57:49.355267
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'C': [2e-05, 0.0002, 0.002, 0.02, 0.2, 2, 20], 'kernel': ['linear']}
+
+best params: {'C': 0.02, 'kernel': 'linear'}
+
+best estimator: SVC(C=0.02, kernel='linear')
+
+Accuracy: 0.9195876288659793
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.90      0.94      0.92       489
+         1.0       0.94      0.89      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 1960.7480030059814 seconds ---
+
+
+
+
+
+Datetime: 2023-01-08 18:29:29.563291
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000], 'gamma': ['scale', 'auto'], 'kernel': ['rbf']}
+
+best params: {'C': 1000, 'gamma': 'scale', 'kernel': 'rbf'}
+
+best estimator: SVC(C=1000)
+
+Accuracy: 0.9247422680412372
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.94      0.93       489
+         1.0       0.94      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.93      0.92      0.92       970
+weighted avg       0.93      0.92      0.92       970
+
+
+
+
+--- 119.0039381980896 seconds ---
+
+
+
+
+
+Datetime: 2023-01-08 18:54:10.442254
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'C': [0.1, 1, 10, 1000.0, 10000.0, 100000.0, 1000000.0], 'gamma': [0.0001, 0.001, 0.01, 0.1, 1.0, 1, 10], 'kernel': ['rbf']}
+
+best params: {'C': 10, 'gamma': 0.0001, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10, gamma=0.0001)
+
+Accuracy: 0.9195876288659793
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.93      0.92       489
+         1.0       0.93      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 433.87099289894104 seconds ---
+
+
+
+
+
+
+Datetime: 2023-01-08 19:28:35.647856
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'max_features': ['auto', 'sqrt', 'log2'], 'ccp_alpha': [0.1, 0.01, 0.001], 'max_depth': [5, 6, 7, 8, 9], 'criterion': ['gini', 'entropy']}
+
+best params: {'ccp_alpha': 0.001, 'criterion': 'gini', 'max_depth': 9, 'max_features': 'auto'}
+
+best estimator: DecisionTreeClassifier(ccp_alpha=0.001, max_depth=9, max_features='auto',
+                       random_state=1024)
+
+Accuracy: 0.7721649484536083
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.75      0.81      0.78       489
+         1.0       0.79      0.73      0.76       481
+
+    accuracy                           0.77       970
+   macro avg       0.77      0.77      0.77       970
+weighted avg       0.77      0.77      0.77       970
+
+
+
+
+--- 8.323669672012329 seconds ---
+
+
+
+
+
+param grid used: 
+{'C': [0.01, 0.1, 1.0, 1, 10, 100, 1000, 10000, 1000000.0, 10000000.0], 'gamma': [1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 0.0001, 0.001, 0.01], 'kernel': ['rbf']}
+
+best estimator: SVC(C=1000, gamma=1e-05)
+
+Accuracy: 0.9216494845360824
+
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.94      0.92       489
+         1.0       0.93      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+
+--- 2216.2014524936676 seconds ---
+
+
+
+
+Datetime: 2023-01-08 21:41:48.678559
+
+ train_N: 4798		test_N: 970
+
+
+
+param grid used: 
+{'C': [0.01, 0.1, 1.0, 1, 10, 100, 1000, 10000, 1000000.0, 10000000.0], 'penalty': ['l1', 'l2']}
+
+best params: {'C': 0.1, 'penalty': 'l2'}
+
+best estimator: LogisticRegression(C=0.1, max_iter=100000)
+
+Accuracy: 0.9154639175257732
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.89      0.94      0.92       489
+         1.0       0.94      0.89      0.91       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 139.7556881904602 seconds ---
+
+
+
+
+
