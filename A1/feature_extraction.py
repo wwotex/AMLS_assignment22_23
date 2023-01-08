@@ -4,10 +4,14 @@ from keras_preprocessing import image
 import cv2
 import dlib
 
+# how much data to use
+N = 5000
+
 # define paths
 base_dir = os.path.dirname(__file__)
-dataset_dir = os.path.join(base_dir,'dataset')
-images_dir = os.path.join(dataset_dir,'celeba')
+assignment_dir = os.path.normpath(base_dir + os.sep + os.pardir)
+dataset_dir = os.path.join(assignment_dir,'Datasets\\celeba')
+images_dir = os.path.join(dataset_dir,'img')
 labels_filename = 'labels.csv'
 
 detector = dlib.get_frontal_face_detector()
@@ -78,36 +82,34 @@ def run_dlib_shape(image):
     return dlibout, resized_image
 
 def extract_features_labels():
-    """
-    This funtion extracts the landmarks features for all images in the folder 'dataset/celeba'.
-    It also extracts the gender label for each image.
-    :return:
-        landmark_features:  an array containing 68 landmark points for each image in which a face was detected
-        gender_labels:      an array containing the gender label (male=0 and female=1) for each image in
-                            which a face was detected
-    """
-    image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)]
-    target_size = None
+
+    # array of image paths
+    image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)[:N]]
+    
+    # load labels.csv
     labels_file = open(os.path.join(dataset_dir, labels_filename), 'r')
     lines = labels_file.readlines()
-    gender_labels = {line.split(',')[0] : int(line.split(',')[6]) for line in lines[2:]}
-    if os.path.isdir(images_dir):
-        all_features = []
-        all_labels = []
-        
-        for img_path in image_paths:
-            file_name= img_path.split('.')[-2].split('\\')[-1]
-            # load image
-            img = image.img_to_array(
-                image.load_img(img_path,
-                               target_size=target_size,
-                               interpolation='bicubic'))
-            features, _ = run_dlib_shape(img)
-            if features is not None:
-                all_features.append(features)
-                all_labels.append(gender_labels[file_name])
+
+    # make list of gender labels
+    gender_labels = {line.split('\t')[0] : int(line.split('\t')[2]) for line in lines[1:]}
+    all_features = []
+    all_labels = []
+    
+    # get features from each image with dlib
+    for img_path in image_paths:
+        file_name= img_path.split('.')[-2].split('\\')[-1]
+        # load image
+        img = image.img_to_array(
+            image.load_img(img_path,
+                            target_size = None,
+                            interpolation = 'bicubic'))
+        features, _ = run_dlib_shape(img)
+        if features is not None:
+            all_features.append(features)
+            all_labels.append(gender_labels[file_name])
 
     landmark_features = np.array(all_features)
-    gender_labels = (np.array(all_labels) + 1)/2 # simply converts the -1 into 0, so male=0 and female=1
-    return landmark_features, gender_labels
+    # convert (-1,1) into (0,1)
+    all_labels = (np.array(all_labels) + 1)/2 
+    return landmark_features, all_labels
 
