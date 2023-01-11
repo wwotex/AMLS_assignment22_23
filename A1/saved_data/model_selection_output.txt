@@ -1,0 +1,395 @@
+Datetime: 2023-01-08 17:57:49.355267
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'C': [2e-05, 0.0002, 0.002, 0.02, 0.2, 2, 20], 'kernel': ['linear']}
+
+best params: {'C': 0.02, 'kernel': 'linear'}
+
+best estimator: SVC(C=0.02, kernel='linear')
+
+Accuracy: 0.9195876288659793
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.90      0.94      0.92       489
+         1.0       0.94      0.89      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 1960.7480030059814 seconds ---
+
+
+
+
+
+Datetime: 2023-01-08 18:29:29.563291
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000], 'gamma': ['scale', 'auto'], 'kernel': ['rbf']}
+
+best params: {'C': 1000, 'gamma': 'scale', 'kernel': 'rbf'}
+
+best estimator: SVC(C=1000)
+
+Accuracy: 0.9247422680412372
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.94      0.93       489
+         1.0       0.94      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.93      0.92      0.92       970
+weighted avg       0.93      0.92      0.92       970
+
+
+
+
+--- 119.0039381980896 seconds ---
+
+
+
+
+
+Datetime: 2023-01-08 18:54:10.442254
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'C': [0.1, 1, 10, 1000.0, 10000.0, 100000.0, 1000000.0], 'gamma': [0.0001, 0.001, 0.01, 0.1, 1.0, 1, 10], 'kernel': ['rbf']}
+
+best params: {'C': 10, 'gamma': 0.0001, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10, gamma=0.0001)
+
+Accuracy: 0.9195876288659793
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.93      0.92       489
+         1.0       0.93      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 433.87099289894104 seconds ---
+
+
+
+
+
+
+Datetime: 2023-01-08 19:28:35.647856
+
+ train_N: 4798		test_N: 970
+
+param grid used: 
+{'max_features': ['auto', 'sqrt', 'log2'], 'ccp_alpha': [0.1, 0.01, 0.001], 'max_depth': [5, 6, 7, 8, 9], 'criterion': ['gini', 'entropy']}
+
+best params: {'ccp_alpha': 0.001, 'criterion': 'gini', 'max_depth': 9, 'max_features': 'auto'}
+
+best estimator: DecisionTreeClassifier(ccp_alpha=0.001, max_depth=9, max_features='auto',
+                       random_state=1024)
+
+Accuracy: 0.7721649484536083
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.75      0.81      0.78       489
+         1.0       0.79      0.73      0.76       481
+
+    accuracy                           0.77       970
+   macro avg       0.77      0.77      0.77       970
+weighted avg       0.77      0.77      0.77       970
+
+
+
+
+--- 8.323669672012329 seconds ---
+
+
+
+
+
+param grid used: 
+{'C': [0.01, 0.1, 1.0, 1, 10, 100, 1000, 10000, 1000000.0, 10000000.0], 'gamma': [1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 0.0001, 0.001, 0.01], 'kernel': ['rbf']}
+
+best estimator: SVC(C=1000, gamma=1e-05)
+
+Accuracy: 0.9216494845360824
+
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.94      0.92       489
+         1.0       0.93      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+
+--- 2216.2014524936676 seconds ---
+
+
+
+
+Datetime: 2023-01-08 21:41:48.678559
+
+ train_N: 4798		test_N: 970
+
+
+
+param grid used: 
+{'C': [0.01, 0.1, 1.0, 1, 10, 100, 1000, 10000, 1000000.0, 10000000.0], 'penalty': ['l1', 'l2']}
+
+best params: {'C': 0.1, 'penalty': 'l2'}
+
+best estimator: LogisticRegression(C=0.1, max_iter=100000)
+
+Accuracy: 0.9154639175257732
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.89      0.94      0.92       489
+         1.0       0.94      0.89      0.91       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 139.7556881904602 seconds ---
+
+
+
+
+
+param grid used: 
+{'n_neighbors': [5, 7, 9, 11, 13], 'p': [1, 2, 3]}
+
+best params: {'n_neighbors': 13, 'p': 1}
+
+
+best estimator: KNeighborsClassifier(n_neighbors=13, p=1)
+
+
+Accuracy: 0.8134020618556701
+
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.90      0.83       489
+         1.0       0.88      0.72      0.79       481
+
+    accuracy                           0.81       970
+   macro avg       0.82      0.81      0.81       970
+weighted avg       0.82      0.81      0.81       970
+
+
+
+
+
+--- 622.4900012016296 seconds ---
+
+
+
+
+
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+-------------------------------34 features only----------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+
+
+
+Datetime: 2023-01-11 17:03:47.236204
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05,
+       1.e+06, 1.e+07, 1.e+08, 1.e+09, 1.e+10]), 'gamma': array([1.e-09, 1.e-08, 1.e-07, 1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02,
+       1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-06, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-06)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 64.38500356674194 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 17:14:29.098204
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 31.10701298713684 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 17:19:44.247203
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 13.022998094558716 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 17:23:45.375203
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 13.75700044631958 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 17:27:39.238735
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 14.424003839492798 seconds ---
+
+
+
+
+
