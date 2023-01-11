@@ -393,3 +393,201 @@ weighted avg       0.67      0.65      0.66        20
 
 
 
+Datetime: 2023-01-11 17:35:42.559744
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 19.330004930496216 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 17:43:33.511268
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 27.335004329681396 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 17:54:06.136269
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'C': array([1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06, 1.e+08, 1.e+10]), 'gamma': array([1.e-09, 1.e-07, 1.e-05, 1.e-03, 1.e-01, 1.e+01, 1.e+03]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-05, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-05)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.77      0.71      0.74        14
+         1.0       0.43      0.50      0.46         6
+
+    accuracy                           0.65        20
+   macro avg       0.60      0.61      0.60        20
+weighted avg       0.67      0.65      0.66        20
+
+
+
+
+--- 15.60801100730896 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 18:41:01.366229
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'n_neighbors': array([1, 2, 3, 4, 5, 6, 7, 8, 9])}
+
+best params: {'n_neighbors': 4}
+
+best estimator: KNeighborsClassifier(n_neighbors=4)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.71      0.86      0.77        14
+         1.0       0.33      0.17      0.22         6
+
+    accuracy                           0.65        20
+   macro avg       0.52      0.51      0.50        20
+weighted avg       0.59      0.65      0.61        20
+
+
+
+
+--- 4.220009803771973 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 18:58:09.704280
+
+ train_N: 194		test_N: 20
+
+
+
+param grid used: 
+{'n_neighbors': array([1, 2, 3, 4, 5, 6, 7, 8, 9])}
+
+best params: {'n_neighbors': 4}
+
+best estimator: KNeighborsClassifier(n_neighbors=4)
+
+Accuracy: 0.65
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.71      0.86      0.77        14
+         1.0       0.33      0.17      0.22         6
+
+    accuracy                           0.65        20
+   macro avg       0.52      0.51      0.50        20
+weighted avg       0.59      0.65      0.61        20
+
+
+
+
+--- 4.978002309799194 seconds ---
+
+
+
+
+
+Datetime: 2023-01-11 19:05:37.741288
+
+ train_N: 4798		test_N: 970
+
+
+
+param grid used: 
+{'n_neighbors': array([1, 2, 3, 4, 5, 6, 7, 8, 9])}
+
+best params: {'n_neighbors': 9}
+
+best estimator: KNeighborsClassifier(n_neighbors=9)
+
+Accuracy: 0.6381443298969072
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.63      0.67      0.65       489
+         1.0       0.64      0.60      0.62       481
+
+    accuracy                           0.64       970
+   macro avg       0.64      0.64      0.64       970
+weighted avg       0.64      0.64      0.64       970
+
+
+
+
+--- 311.50600123405457 seconds ---
+
+
+
+
+

@@ -19,14 +19,14 @@ global train_N, test_N
 warnings.filterwarnings('ignore')
 useSavedFeatures = True
 saveFeatures = False
-savedFeaturesFilename = '200_data_points.npy'
-train_N = 200
-test_N = 20
+savedFeaturesFilename = 'saved_features_all.npy'
+train_N = 5000
+test_N = 1000
 
 # ---------------------FUNCTION DEFINITIONS-------------------------
 
-base_dir = os.path.dirname(__file__)
-saved_data_dir = os.path.join(base_dir, 'saved_data')
+# globals.base_dir = os.path.dirname(__file__)
+# globals.saved_data_dir = os.path.join(globals.base_dir, 'saved_data')
 # full_output = ''
 
 def printWW(str):
@@ -36,7 +36,7 @@ def printWW(str):
 
 def saveOutputToFile():
     globals.full_output = f'Datetime: {datetime.now()}\n\n train_N: {train_N}\t\ttest_N: {test_N}\n\n' + globals.full_output + '\n\n\n\n'
-    with open(os.path.join(saved_data_dir, 'model_selection_output.txt'), 'a') as f:
+    with open(os.path.join(globals.saved_data_dir, 'model_selection_output.txt'), 'a') as f:
         f.write(globals.full_output)
 
     pass
@@ -44,7 +44,7 @@ def saveOutputToFile():
 def get_data():
     global train_N, test_N
 
-    path = os.path.join(saved_data_dir, savedFeaturesFilename)
+    path = os.path.join(globals.saved_data_dir, savedFeaturesFilename)
 
     if useSavedFeatures and os.path.exists(path):
         tr_X, tr_y, te_X, te_y = np.load(path, allow_pickle=True)
@@ -76,12 +76,20 @@ train_N, test_N, tr_X, tr_y, te_X, te_y= get_data()
 
 gridSVM = mf.img_SVM(tr_X, tr_y)
 mf.processResults(gridSVM, te_X, te_y)
-with open(os.path.join(saved_data_dir, 'saved_grid_SVM.pkl'), 'wb') as outp:
+with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'wb') as outp:
     pickle.dump(gridSVM, outp, pickle.HIGHEST_PROTOCOL)
 
 
-# gridKNN = img_kNN(tr_X, tr_y)
-# processResults(gridKNN, te_X, te_y)
+# gridKNN = mf.img_kNN(tr_X, tr_y)
+# mf.processResults(gridKNN, te_X, te_y)
+# with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
+#     pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
+
+
+# gridRandom = mf.img_random_forest(tr_X, tr_y)
+# mf.processResults(gridRandom, te_X, te_y, 'random_forest')
+# with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'wb') as outp:
+#     pickle.dump(gridRandom, outp, pickle.HIGHEST_PROTOCOL)
 
 printWW("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
 
