@@ -9,6 +9,7 @@ from datetime import datetime
 import warnings
 import globals
 import pickle
+import output as out
 
 globals.initialize()
 
@@ -39,7 +40,6 @@ def saveOutputToFile():
     with open(os.path.join(globals.saved_data_dir, 'model_selection_output.txt'), 'a') as f:
         f.write(globals.full_output)
 
-    pass
 
 def get_data():
     global train_N, test_N
@@ -60,8 +60,7 @@ def get_data():
     train_N = tr_X.shape[0]
     test_N = te_X.shape[0]
 
-    print(f'\t\tdata size: {train_N}  {test_N}')
-    print(tr_X.shape)
+    out.print(f'\n\n\t\tdata size: {train_N}  {test_N}')
 
     # tr_X = tr_X.reshape((train_N, 68*2))
     # te_X = te_X.reshape((test_N, 68*2))
@@ -71,6 +70,8 @@ def get_data():
 start_time = time.time()
 
 train_N, test_N, tr_X, tr_y, te_X, te_y= get_data()
+
+out.print(f'Datetime: {datetime.now()}\n\n train_N: {train_N}\t\ttest_N: {test_N}\n\n')
 
 
 gridSVM = mf.img_SVM(tr_X, tr_y)
@@ -92,6 +93,6 @@ with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'wb') as o
 
 
 
-printWW("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
+out.print("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
 
-saveOutputToFile()
+out.saveOutputToFile()

@@ -21,11 +21,8 @@ global train_N, test_N
 warnings.filterwarnings('ignore')
 useSavedFeatures = True
 saveFeatures = False
-<<<<<<< HEAD
 savedFeaturesFilename = 'saved_images_gray.pkl'
-=======
-savedFeaturesFilename = 'saved_features_all.npy'
->>>>>>> parent of 6258080 (added B1 solutions)
+# savedFeaturesFilename = 'saved_features_all.npy'
 train_N = 10000
 test_N = 2500
 
@@ -89,11 +86,8 @@ mf.processResults(gridKNN, te_X, te_y)
 with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
     pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
 
-<<<<<<< HEAD
 # gridNeural = mf.img_neural(tr_X, tr_y)
 mf.processNeuralResults(None, te_X, te_y)
-=======
->>>>>>> parent of 6258080 (added B1 solutions)
 
 gridRandom = mf.img_random_forest(tr_X, tr_y)
 mf.processResults(gridRandom, te_X, te_y, 'random_forest')

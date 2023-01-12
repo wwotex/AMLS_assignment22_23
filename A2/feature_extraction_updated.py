@@ -3,11 +3,8 @@ import numpy as np
 from keras_preprocessing import image
 import cv2
 import dlib
-import imutils
-
-# # how much data to use
-# training_N = 200
-# test_N = 20
+import output as out
+from tqdm import tqdm
 
 # define paths
 base_dir = os.path.dirname(__file__)
@@ -19,11 +16,13 @@ test_images_dir = os.path.join(test_set_dir,'img')
 labels_filename = 'labels.csv'
 saved_data_dir = os.path.join(base_dir, 'saved_data')
 
+# create detector and predictor objects for face and landmark detection
 detector = dlib.get_frontal_face_detector()
 path = os.path.join(saved_data_dir,'shape_predictor_68_face_landmarks.dat')
 
 predictor = dlib.shape_predictor(path)
 
+# convert facial landmarks into an array of tuples
 def shape_to_np(shape, dtype="int"):
     # initialize the list of (x, y)-coordinates
     coords = np.zeros((shape.num_parts, 2), dtype=dtype)
@@ -36,6 +35,7 @@ def shape_to_np(shape, dtype="int"):
     # return the list of (x, y)-coordinates
     return coords
 
+# convert the rectangles from dlib into bounding boxes from open-cv
 def rect_to_bb(rect):
     # take a bounding predicted by dlib and convert it
     # to the format (x, y, w, h) as we would normally do
@@ -48,15 +48,18 @@ def rect_to_bb(rect):
     # return a tuple of (x, y, w, h)
     return (x, y, w, h)
 
+
+# extract landmarks from one image
 def run_dlib_shape(image):
     # in this function we load the image, detect the landmarks of the face, and then return the image and the landmarks
     # load the input image, resize it, and convert it to grayscale
     resized_image = image.astype('uint8')
 
+    # change color scheme to grayscale
     gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
     gray = gray.astype('uint8')
 
-    # detect faces in the grayscale image
+    # detect faces
     rects = detector(gray, 1)
     num_faces = len(rects)
 
@@ -75,6 +78,7 @@ def run_dlib_shape(image):
         temp_shape = shape_to_np(temp_shape)
 
 
+        # generate images for report
         # cv2_img = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         # max_intensity = np.max(cv2_img)
         # cv2_img = cv2_img * (255.0 / max_intensity)
@@ -88,21 +92,23 @@ def run_dlib_shape(image):
 
         # convert dlib's rectangle to a OpenCV-style bounding box
         # [i.e., (x, y, w, h)],
-        #   (x, y, w, h) = face_utils.rect_to_bb(rect)
         (x, y, w, h) = rect_to_bb(rect)
         face_shapes[:, i] = np.reshape(temp_shape, [136])
         face_areas[0, i] = w * h
+
     # find largest face and keep
     dlibout = np.reshape(np.transpose(face_shapes[:, np.argmax(face_areas)]), [136])
-    # dlibout = np.reshape(dlibout, [136])
 
     # return dlibout[:34]
     return dlibout
 
+# extract features for all images
 def extract_features_labels(training, training_N, test_N):
+    # choose directories
     images_dir = training_images_dir if training else test_images_dir
     dataset_dir = training_set_dir if training else test_set_dir
     N = training_N if training else test_N
+    
     # array of image paths
     image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)[:N]]
     
@@ -115,16 +121,18 @@ def extract_features_labels(training, training_N, test_N):
     all_features = []
     all_labels = []
     
+    out.printWW(f'\nfetching {"training" if training else "test"} data\n')
+
     # get features from each image with dlib
-    for img_path in image_paths:
+    for img_path in tqdm(image_paths):
         file_name= img_path.split('.')[-2].split('\\')[-1]
         # load image
+
         img = image.img_to_array(
             image.load_img(img_path,
                             target_size = None,
                             interpolation = 'bicubic'))
-        if len(all_features) > 19:
-            pass
+        
         features = run_dlib_shape(img)
 
         if features is not None:

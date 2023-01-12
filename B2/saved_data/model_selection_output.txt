@@ -1,0 +1,123 @@
+Datetime: 2023-01-12 14:49:46.385314
+
+ train_N: 10000		test_N: 2500
+
+
+
+--- 3172.9726543426514 seconds ---
+
+
+
+
+
+Datetime: 2023-01-12 15:59:51.155196
+
+ train_N: 10000		test_N: 2500
+
+
+
+--- 30.92452120780945 seconds ---
+
+
+
+
+
+Datetime: 2023-01-12 16:01:35.159656
+
+ train_N: 10000		test_N: 2500
+
+
+batch size: 32
+epochs: 8
+Accuracy: 0.8424
+
+Classification report:               precision    recall  f1-score   support
+
+           0       0.99      0.78      0.87       506
+           1       0.95      0.82      0.88       483
+           2       0.83      0.86      0.84       525
+           3       0.85      0.84      0.85       514
+           4       0.69      0.92      0.79       472
+
+    accuracy                           0.84      2500
+   macro avg       0.86      0.84      0.84      2500
+weighted avg       0.86      0.84      0.85      2500
+
+
+
+
+--- 25.764004468917847 seconds ---
+
+
+
+
+
+Datetime: 2023-01-12 17:17:02.215280
+
+ train_N: 10000		test_N: 2500
+
+
+
+--- 3523.1788170337677 seconds ---
+
+
+
+
+
+Datetime: 2023-01-12 23:10:40.065597
+
+ train_N: 10000		test_N: 2500
+
+
+batch size: 32
+epochs: 8
+Accuracy: 0.8504
+
+Classification report:               precision    recall  f1-score   support
+
+           0       0.90      0.81      0.85       506
+           1       0.94      0.83      0.88       483
+           2       0.88      0.86      0.87       525
+           3       0.77      0.88      0.82       514
+           4       0.79      0.88      0.83       472
+
+    accuracy                           0.85      2500
+   macro avg       0.86      0.85      0.85      2500
+weighted avg       0.86      0.85      0.85      2500
+
+
+
+
+--- 29.588454723358154 seconds ---
+
+
+
+
+
+
+fetching training data
+
+fetching test data
+		data size: 1000  250Datetime: 2023-01-18 19:11:40.243249
+
+ train_N: 1000		test_N: 250
+
+Accuracy: 0.812
+
+Classification report:               precision    recall  f1-score   support
+
+           0       0.92      0.71      0.80        49
+           1       0.93      0.74      0.82        50
+           2       0.68      0.95      0.79        59
+           3       0.78      0.85      0.81        46
+           4       0.90      0.78      0.84        46
+
+    accuracy                           0.81       250
+   macro avg       0.84      0.81      0.81       250
+weighted avg       0.84      0.81      0.81       250
+
+
+
+
+--- 431.0039131641388 seconds ---
+

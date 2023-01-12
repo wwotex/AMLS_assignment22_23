@@ -804,3 +804,55 @@ weighted avg       0.92      0.92      0.92       970
 
 
 
+
+fetching training data
+
+fetching test data
+
+
+		data size: 194  10Datetime: 2023-01-18 18:13:27.992321
+
+ train_N: 194		test_N: 10
+
+Accuracy: 0.9
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.88      1.00      0.93         7
+         1.0       1.00      0.67      0.80         3
+
+    accuracy                           0.90        10
+   macro avg       0.94      0.83      0.87        10
+weighted avg       0.91      0.90      0.89        10
+
+
+
+
+--- 9.905004262924194 seconds ---
+
+
+fetching training data
+
+fetching test data
+
+
+		data size: 194  10Datetime: 2023-01-18 18:16:20.685960
+
+ train_N: 194		test_N: 10
+
+Accuracy: 0.9
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.88      1.00      0.93         7
+         1.0       1.00      0.67      0.80         3
+
+    accuracy                           0.90        10
+   macro avg       0.94      0.83      0.87        10
+weighted avg       0.91      0.90      0.89        10
+
+
+
+
+--- 7.15632963180542 seconds ---
+

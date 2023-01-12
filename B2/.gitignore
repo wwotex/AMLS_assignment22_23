@@ -1,3 +1,6 @@
-saved_data
+saved_data/saved_model_history_neural.pkl
+saved_data/saved_results_neural.pkl
+saved_data/neural
+saved_data/saved_images_color.pkl
 graphs
 __pycache__

@@ -6,15 +6,12 @@ import numpy as np
 import globals
 import graphing as gp
 import os
-<<<<<<< HEAD
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from keras.wrappers.scikit_learn import KerasClassifier
 from keras.utils import to_categorical
 from keras.callbacks import ModelCheckpoint
 from keras.models import load_model
-=======
->>>>>>> parent of 6258080 (added B1 solutions)
 
 
 globals.initialize()
@@ -58,7 +55,6 @@ def img_kNN(training_images, training_labels):
 
     return grid
 
-<<<<<<< HEAD
 def create_model(num_filters=32, filter_size=3, pool_size=2):
     model = Sequential()
    # Add the first convolutional layer
@@ -98,8 +94,6 @@ def img_neural(training_images, training_labels):
 
     return model
 
-=======
->>>>>>> parent of 6258080 (added B1 solutions)
 def processResults(grid, test_images, test_labels, model): 
     printWW(f'best params: {grid.best_params_}\n\n')
     printWW(f'best estimator: {grid.best_estimator_}\n\n') 

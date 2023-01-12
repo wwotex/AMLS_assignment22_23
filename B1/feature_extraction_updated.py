@@ -4,6 +4,8 @@ from keras_preprocessing import image
 import cv2
 import dlib
 import imutils
+from tqdm import tqdm
+import output as out
 
 # # how much data to use
 # training_N = 200
@@ -24,6 +26,7 @@ path = os.path.join(saved_data_dir,'shape_predictor_68_face_landmarks.dat')
 
 predictor = dlib.shape_predictor(path)
 
+# convert landmarks to array of tuples
 def shape_to_np(shape, dtype="int"):
     # initialize the list of (x, y)-coordinates
     coords = np.zeros((shape.num_parts, 2), dtype=dtype)
@@ -36,6 +39,7 @@ def shape_to_np(shape, dtype="int"):
     # return the list of (x, y)-coordinates
     return coords
 
+# change dlib rectangle object to open-cv bounding box
 def rect_to_bb(rect):
     # take a bounding predicted by dlib and convert it
     # to the format (x, y, w, h) as we would normally do
@@ -48,6 +52,7 @@ def rect_to_bb(rect):
     # return a tuple of (x, y, w, h)
     return (x, y, w, h)
 
+# find features in one image
 def run_dlib_shape(image):
     # in this function we load the image, detect the landmarks of the face, and then return the image and the landmarks
     # load the input image, resize it, and convert it to grayscale
@@ -98,10 +103,13 @@ def run_dlib_shape(image):
 
     return dlibout
 
+# extract all labels and features from images
 def extract_features_labels(training, training_N, test_N):
+    # choose directories
     images_dir = training_images_dir if training else test_images_dir
     dataset_dir = training_set_dir if training else test_set_dir
     N = training_N if training else test_N
+    
     # array of image paths
     image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)[:N]]
     
@@ -124,6 +132,47 @@ def extract_features_labels(training, training_N, test_N):
                             interpolation = 'bicubic'))
         
         features = run_dlib_shape(img)
+
+        if features is not None:
+            all_features.append(features)
+            all_labels.append(gender_labels[file_name])
+
+    landmark_features = np.array(all_features)
+    # convert (-1,1) into (0,1)
+    all_labels = np.array(all_labels)
+    return landmark_features, all_labels
+
+# just extract the images and rescale them for the CNN
+def extract_images_labels(training, training_N, test_N):
+    # choose directories
+    images_dir = training_images_dir if training else test_images_dir
+    dataset_dir = training_set_dir if training else test_set_dir
+    N = training_N if training else test_N
+    
+    # array of image paths
+    image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)[:N]]
+    
+    # load labels.csv
+    labels_file = open(os.path.join(dataset_dir, labels_filename), 'r')
+    lines = labels_file.readlines()
+
+    # make list of gender labels
+    gender_labels = {line.split('\t')[0] : int(line.split('\t')[2]) for line in lines[1:]}
+    all_features = []
+    all_labels = []
+    
+    out.printWW(f'\nfetching {"training" if training else "test"} data\n')
+
+    # get features from each image with dlib
+    for img_path in tqdm(image_paths):
+        file_name= img_path.split('.')[-2].split('\\')[-1]
+        # load image
+        img = image.img_to_array(
+            image.load_img(img_path,
+                            target_size = (150, 150),
+                            interpolation = 'bicubic'))
+        
+        features = cv2.cvtColor(img.astype('uint8'), cv2.COLOR_RGB2GRAY)
 
         if features is not None:
             all_features.append(features)

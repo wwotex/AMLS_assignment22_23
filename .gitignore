@@ -1,7 +1,9 @@
-Datasets/*
 dataset_AMLS_22-23.zip
 report_stuff/*
 zip_files/*
 Pipfile
 Pipfile.lock
 tasks.pdf
+Datasets/*/labels.csv
+Datasets/*/img/*
+*/__pycache__

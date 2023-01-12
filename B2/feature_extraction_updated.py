@@ -1,6 +1,11 @@
 import os
 import numpy as np
 from keras_preprocessing import image
+import cv2
+import dlib
+import imutils
+from tqdm import tqdm
+import output as out
 
 # # how much data to use
 # training_N = 200
@@ -16,14 +21,13 @@ test_images_dir = os.path.join(test_set_dir,'img')
 labels_filename = 'labels.csv'
 saved_data_dir = os.path.join(base_dir, 'saved_data')
 
-def run_dlib_shape(image):
-    resized_image = image.astype('uint8')
-    return resized_image
-
-def extract_features_labels(training, training_N, test_N):
+# just extract the images and rescale them for the CNN
+def extract_images_labels(training, training_N, test_N):
+    # choose directories
     images_dir = training_images_dir if training else test_images_dir
     dataset_dir = training_set_dir if training else test_set_dir
     N = training_N if training else test_N
+    
     # array of image paths
     image_paths = [os.path.join(images_dir, l) for l in os.listdir(images_dir)[:N]]
     
@@ -36,17 +40,18 @@ def extract_features_labels(training, training_N, test_N):
     all_features = []
     all_labels = []
     
+    out.printWW(f'\nfetching {"training" if training else "test"} data\n')
+
     # get features from each image with dlib
-    for img_path in image_paths:
+    for img_path in tqdm(image_paths):
         file_name= img_path.split('.')[-2].split('\\')[-1]
-        print(f'processing: {file_name}')
         # load image
         img = image.img_to_array(
             image.load_img(img_path,
                             target_size = (150, 150),
                             interpolation = 'bicubic'))
         
-        features = run_dlib_shape(img)
+        features = img.astype('uint8')
 
         if features is not None:
             all_features.append(features)
@@ -56,7 +61,3 @@ def extract_features_labels(training, training_N, test_N):
     # convert (-1,1) into (0,1)
     all_labels = np.array(all_labels)
     return landmark_features, all_labels
-
-
-if __name__ == "__main__":
-    extract_features_labels(training=False, test_N=20, training_N=1)

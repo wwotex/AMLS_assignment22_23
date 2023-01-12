@@ -1,3 +1,8 @@
-saved_data
+saved_data/saved_features_all.npy
+saved_data/neural
+saved_data/saved_images_gray.pkl
+saved_data/kNN
+saved_data/random
+
 graphs
 __pycache__
