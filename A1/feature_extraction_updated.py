@@ -96,7 +96,8 @@ def run_dlib_shape(image):
     dlibout = np.reshape(np.transpose(face_shapes[:, np.argmax(face_areas)]), [136])
     # dlibout = np.reshape(dlibout, [136])
 
-    return dlibout[:34]
+    # return dlibout[:34]
+    return dlibout
 
 def extract_features_labels(training, training_N, test_N):
     images_dir = training_images_dir if training else test_images_dir

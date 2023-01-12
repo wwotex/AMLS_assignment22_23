@@ -17,9 +17,7 @@ def printWW(str):
 def img_random_forest(training_images, training_labels):
     n_estimators = np.arange(10, 1000, 10)
 
-    param_grid = {'n_estimators': n_estimators,
-              'max_depth': [3, 5, 7],
-              'min_samples_split': [2, 5, 10]}
+    param_grid = {'n_estimators': n_estimators}
     grid = GridSearchCV(ensemble.RandomForestClassifier(), param_grid, refit = True, verbose = 3, n_jobs=-1, return_train_score=True)
     printWW(f'\n\nparam grid used: \n{param_grid}\n\n')
     grid.fit(training_images, training_labels)
@@ -27,8 +25,8 @@ def img_random_forest(training_images, training_labels):
     return grid
 
 def img_SVM(training_images, training_labels):
-    C_range = np.logspace(-2, 10, 7)
-    gamma_range = np.logspace(-9, 3, 7)
+    C_range = np.logspace(-4, 6, 6)
+    gamma_range = np.logspace(-8, 4, 7)
 
     param_grid = {'C': C_range,
                 'gamma': gamma_range,

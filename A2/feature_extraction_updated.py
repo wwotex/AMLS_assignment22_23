@@ -17,9 +17,10 @@ test_set_dir = os.path.join(assignment_dir,'Datasets\\celeba_test')
 training_images_dir = os.path.join(training_set_dir,'img')
 test_images_dir = os.path.join(test_set_dir,'img')
 labels_filename = 'labels.csv'
+saved_data_dir = os.path.join(base_dir, 'saved_data')
 
 detector = dlib.get_frontal_face_detector()
-path = os.path.join(base_dir,'shape_predictor_68_face_landmarks.dat')
+path = os.path.join(saved_data_dir,'shape_predictor_68_face_landmarks.dat')
 
 predictor = dlib.shape_predictor(path)
 
@@ -95,6 +96,7 @@ def run_dlib_shape(image):
     dlibout = np.reshape(np.transpose(face_shapes[:, np.argmax(face_areas)]), [136])
     # dlibout = np.reshape(dlibout, [136])
 
+    # return dlibout[:34]
     return dlibout
 
 def extract_features_labels(training, training_N, test_N):
