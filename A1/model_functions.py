@@ -25,8 +25,10 @@ def img_random_forest(training_images, training_labels):
     return grid
 
 def img_SVM(training_images, training_labels):
-    C_range = np.logspace(-4, 6, 6)
-    gamma_range = np.logspace(-8, 4, 7)
+    # C_range = np.logspace(-4, 6, 6)
+    # gamma_range = np.logspace(-8, 4, 7)
+    C_range = np.logspace(2, 5, 10)
+    gamma_range = np.logspace(-8, -2, 8)
 
     param_grid = {'C': C_range,
                 'gamma': gamma_range,
@@ -40,7 +42,7 @@ def img_SVM(training_images, training_labels):
     return grid
 
 def img_kNN(training_images, training_labels):
-    n_neighbors = np.arange(1, 10, 1)
+    n_neighbors = np.arange(1, 100, 1)
     param_grid = {'n_neighbors': n_neighbors}
     
     grid = GridSearchCV(neighbors.KNeighborsClassifier(), param_grid, refit = True, verbose = 3, n_jobs=-1, return_train_score=True) 

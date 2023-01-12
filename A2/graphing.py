@@ -105,14 +105,17 @@ def plot_score_parameter(grid, model, param_name):
     plt.show()
 
 if __name__ == "__main__":
-    model = 'knn'
-    param = 'n_neighbors'
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'rb') as inp:
+    model = 'random_forest'
+    param = 'n_estimators'
+    # with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
+    #     plot_C_gamma(pickle.load(inp))
+
+    with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'rb') as inp:
         plot_learning_curve(pickle.load(inp), model, param)
 
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'rb') as inp:
+    with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'rb') as inp:
         plot_score_parameter(pickle.load(inp), model, param)
 
-    with open(os.path.join(globals.saved_data_dir, 'saved_results_kNN.pkl'), 'rb') as inp:
+    with open(os.path.join(globals.saved_data_dir, 'saved_results_random_forest.pkl'), 'rb') as inp:
         results = pickle.load(inp)
         plot_confusion_matrix(results, model)

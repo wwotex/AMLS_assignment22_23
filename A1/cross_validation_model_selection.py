@@ -79,16 +79,18 @@ with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'wb') as o
     pickle.dump(gridSVM, outp, pickle.HIGHEST_PROTOCOL)
 
 
-gridKNN = mf.img_kNN(tr_X, tr_y)
-mf.processResults(gridKNN, te_X, te_y, 'knn')
-with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
-    pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
+# gridKNN = mf.img_kNN(tr_X, tr_y)
+# mf.processResults(gridKNN, te_X, te_y, 'knn')
+# with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
+#     pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
 
 
-gridRandom = mf.img_random_forest(tr_X, tr_y)
-mf.processResults(gridRandom, te_X, te_y, 'random_forest')
-with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'wb') as outp:
-    pickle.dump(gridRandom, outp, pickle.HIGHEST_PROTOCOL)
+# gridRandom = mf.img_random_forest(tr_X, tr_y)
+# mf.processResults(gridRandom, te_X, te_y, 'random_forest')
+# with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'wb') as outp:
+#     pickle.dump(gridRandom, outp, pickle.HIGHEST_PROTOCOL)
+
+
 
 printWW("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
 

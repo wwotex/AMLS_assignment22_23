@@ -5,6 +5,8 @@ import numpy as np
 import os
 import globals
 from sklearn.metrics import confusion_matrix
+from matplotlib.ticker import FormatStrFormatter
+
 
 
 
@@ -25,7 +27,8 @@ def plot_C_gamma(grid):
     scores = grid.cv_results_["mean_test_score"].reshape(len(C_range), len(gamma_range))
 
 
-    plt.figure(figsize=(8, 6))
+    fig = plt.figure(figsize=(8, 6))
+    ax = fig.add_subplot(111)
     plt.subplots_adjust(left=0.2, right=0.95, bottom=0.15, top=0.95)
     plt.imshow(
         scores,
@@ -39,6 +42,8 @@ def plot_C_gamma(grid):
     plt.grid()
     plt.xticks(np.arange(len(gamma_range)), gamma_range, rotation=45)
     plt.yticks(np.arange(len(C_range)), C_range)
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
     plt.title("Validation accuracy")
     plt.savefig(os.path.join(globals.image_dir, 'c_gamma_svm.jpg'))
     plt.show()
@@ -106,16 +111,16 @@ def plot_score_parameter(grid, model, param_name):
 
 if __name__ == "__main__":
     model = 'svm'
-    param = 'gamma'
+    param = 'n_neighbors'
     with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
         plot_C_gamma(pickle.load(inp))
 
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
-        plot_learning_curve(pickle.load(inp), model, param)
+    # with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
+    #     plot_learning_curve(pickle.load(inp), model, param)
 
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
-        plot_score_parameter(pickle.load(inp), model, param)
+    # with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
+    #     plot_score_parameter(pickle.load(inp), model, param)
 
-    with open(os.path.join(globals.saved_data_dir, 'saved_results_SVM.pkl'), 'rb') as inp:
+    with open(os.path.join(globals.saved_data_dir, 'saved_results_svm.pkl'), 'rb') as inp:
         results = pickle.load(inp)
         plot_confusion_matrix(results, model)

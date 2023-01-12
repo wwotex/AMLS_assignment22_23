@@ -20,8 +20,8 @@ warnings.filterwarnings('ignore')
 useSavedFeatures = True
 saveFeatures = False
 savedFeaturesFilename = 'saved_features_all.npy'
-train_N = 5000
-test_N = 1000
+train_N = 10000
+test_N = 2500
 
 # ---------------------FUNCTION DEFINITIONS-------------------------
 
@@ -71,8 +71,6 @@ def get_data():
 start_time = time.time()
 
 train_N, test_N, tr_X, tr_y, te_X, te_y= get_data()
-# gridLogReg = img_logreg(tr_X, tr_y)
-# processResults(gridLogReg, te_X, te_y)
 
 gridSVM = mf.img_SVM(tr_X, tr_y)
 mf.processResults(gridSVM, te_X, te_y)
@@ -80,16 +78,16 @@ with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'wb') as o
     pickle.dump(gridSVM, outp, pickle.HIGHEST_PROTOCOL)
 
 
-# gridKNN = mf.img_kNN(tr_X, tr_y)
-# mf.processResults(gridKNN, te_X, te_y)
-# with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
-#     pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
+gridKNN = mf.img_kNN(tr_X, tr_y)
+mf.processResults(gridKNN, te_X, te_y)
+with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
+    pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
 
 
-# gridRandom = mf.img_random_forest(tr_X, tr_y)
-# mf.processResults(gridRandom, te_X, te_y, 'random_forest')
-# with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'wb') as outp:
-#     pickle.dump(gridRandom, outp, pickle.HIGHEST_PROTOCOL)
+gridRandom = mf.img_random_forest(tr_X, tr_y)
+mf.processResults(gridRandom, te_X, te_y, 'random_forest')
+with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'wb') as outp:
+    pickle.dump(gridRandom, outp, pickle.HIGHEST_PROTOCOL)
 
 printWW("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
 

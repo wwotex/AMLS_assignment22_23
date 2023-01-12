@@ -96,7 +96,7 @@ def run_dlib_shape(image):
     dlibout = np.reshape(np.transpose(face_shapes[:, np.argmax(face_areas)]), [136])
     # dlibout = np.reshape(dlibout, [136])
 
-    return dlibout[:34]
+    return dlibout
 
 def extract_features_labels(training, training_N, test_N):
     images_dir = training_images_dir if training else test_images_dir
@@ -120,7 +120,7 @@ def extract_features_labels(training, training_N, test_N):
         # load image
         img = image.img_to_array(
             image.load_img(img_path,
-                            target_size = (200, 200),
+                            target_size = (150, 150),
                             interpolation = 'bicubic'))
         
         features = run_dlib_shape(img)
@@ -135,4 +135,5 @@ def extract_features_labels(training, training_N, test_N):
     return landmark_features, all_labels
 
 
-extract_features_labels(training=False, test_N=1, training_N=1)
+if __name__ == "__main__":
+    extract_features_labels(training=False, test_N=1, training_N=1)

@@ -175,3 +175,85 @@ Datetime: 2023-01-12 01:56:19.229885
 
 
 
+Datetime: 2023-01-12 03:06:00.084291
+
+ train_N: 4798		test_N: 970
+
+
+
+param grid used: 
+{'C': array([1.e-04, 1.e-02, 1.e+00, 1.e+02, 1.e+04, 1.e+06]), 'gamma': array([1.e-08, 1.e-06, 1.e-04, 1.e-02, 1.e+00, 1.e+02, 1.e+04]), 'kernel': ['rbf']}
+
+best params: {'C': 10000.0, 'gamma': 1e-06, 'kernel': 'rbf'}
+
+best estimator: SVC(C=10000.0, gamma=1e-06)
+
+Accuracy: 0.9020618556701031
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.90      0.90      0.90       473
+         1.0       0.91      0.90      0.90       497
+
+    accuracy                           0.90       970
+   macro avg       0.90      0.90      0.90       970
+weighted avg       0.90      0.90      0.90       970
+
+
+
+
+param grid used: 
+{'n_neighbors': array([1, 2, 3, 4, 5, 6, 7, 8, 9])}
+
+best params: {'n_neighbors': 9}
+
+best estimator: KNeighborsClassifier(n_neighbors=9)
+
+Accuracy: 0.8793814432989691
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.88      0.87      0.88       473
+         1.0       0.88      0.89      0.88       497
+
+    accuracy                           0.88       970
+   macro avg       0.88      0.88      0.88       970
+weighted avg       0.88      0.88      0.88       970
+
+
+
+
+param grid used: 
+{'n_estimators': array([ 10,  20,  30,  40,  50,  60,  70,  80,  90, 100, 110, 120, 130,
+       140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260,
+       270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390,
+       400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520,
+       530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650,
+       660, 670, 680, 690, 700, 710, 720, 730, 740, 750, 760, 770, 780,
+       790, 800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900, 910,
+       920, 930, 940, 950, 960, 970, 980, 990])}
+
+best params: {'n_estimators': 250}
+
+best estimator: RandomForestClassifier(n_estimators=250)
+
+Accuracy: 0.8969072164948454
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.88      0.91      0.90       473
+         1.0       0.91      0.89      0.90       497
+
+    accuracy                           0.90       970
+   macro avg       0.90      0.90      0.90       970
+weighted avg       0.90      0.90      0.90       970
+
+
+
+
+--- 3965.669483423233 seconds ---
+
+
+
+
+
