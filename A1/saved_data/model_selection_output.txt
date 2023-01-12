@@ -780,3 +780,27 @@ weighted avg       0.92      0.92      0.92       970
 
 
 
+Datetime: 2023-01-13 19:50:57.778516
+
+ train_N: 4798		test_N: 970
+
+Accuracy: 0.9226804123711341
+
+Classification report:               precision    recall  f1-score   support
+
+         0.0       0.91      0.94      0.92       489
+         1.0       0.93      0.91      0.92       481
+
+    accuracy                           0.92       970
+   macro avg       0.92      0.92      0.92       970
+weighted avg       0.92      0.92      0.92       970
+
+
+
+
+--- 2.0510029792785645 seconds ---
+
+
+
+
+

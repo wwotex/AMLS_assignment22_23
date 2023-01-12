@@ -3,11 +3,6 @@ import numpy as np
 from keras_preprocessing import image
 import cv2
 import dlib
-import imutils
-
-# # how much data to use
-# training_N = 200
-# test_N = 20
 
 # define paths
 base_dir = os.path.dirname(__file__)
@@ -88,13 +83,12 @@ def run_dlib_shape(image):
 
         # convert dlib's rectangle to a OpenCV-style bounding box
         # [i.e., (x, y, w, h)],
-        #   (x, y, w, h) = face_utils.rect_to_bb(rect)
         (x, y, w, h) = rect_to_bb(rect)
         face_shapes[:, i] = np.reshape(temp_shape, [136])
         face_areas[0, i] = w * h
+
     # find largest face and keep
     dlibout = np.reshape(np.transpose(face_shapes[:, np.argmax(face_areas)]), [136])
-    # dlibout = np.reshape(dlibout, [136])
 
     # return dlibout[:34]
     return dlibout

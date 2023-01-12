@@ -136,4 +136,4 @@ def extract_features_labels(training, training_N, test_N):
 
 
 if __name__ == "__main__":
-    extract_features_labels(training=False, test_N=1, training_N=1)
+    extract_features_labels(training=False, test_N=20, training_N=1)

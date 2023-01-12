@@ -40,10 +40,12 @@ def plot_C_gamma(grid):
     plt.ylabel("C")
     plt.colorbar()
     plt.grid()
+    
+    gamma_range = [f'{x:.1e}' for x in gamma_range]
+    C_range = [f'{x:.1e}' for x in C_range]
+
     plt.xticks(np.arange(len(gamma_range)), gamma_range, rotation=45)
     plt.yticks(np.arange(len(C_range)), C_range)
-    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
-    ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
     plt.title("Validation accuracy")
     plt.savefig(os.path.join(globals.image_dir, 'c_gamma_svm.jpg'))
     plt.show()
@@ -112,8 +114,8 @@ def plot_score_parameter(grid, model, param_name):
 if __name__ == "__main__":
     model = 'svm'
     param = 'n_neighbors'
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
-        plot_C_gamma(pickle.load(inp))
+    # with open(os.path.join(globals.saved_data_dir, 'SVM\\saved_grid_SVM_det.pkl'), 'rb') as inp:
+    #     plot_C_gamma(pickle.load(inp))
 
     # with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
     #     plot_learning_curve(pickle.load(inp), model, param)
@@ -121,6 +123,6 @@ if __name__ == "__main__":
     # with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'rb') as inp:
     #     plot_score_parameter(pickle.load(inp), model, param)
 
-    with open(os.path.join(globals.saved_data_dir, 'saved_results_svm.pkl'), 'rb') as inp:
+    with open(os.path.join(globals.saved_data_dir, 'saved_results_final.pkl'), 'rb') as inp:
         results = pickle.load(inp)
         plot_confusion_matrix(results, model)

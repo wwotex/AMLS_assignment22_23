@@ -1,6 +1,4 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
 import feature_extraction_updated as fe
 import model_functions as mf
 import graphing as gp
@@ -11,6 +9,8 @@ from datetime import datetime
 import warnings
 import globals
 import pickle
+from sklearn import svm, neighbors, ensemble
+from sklearn.metrics import classification_report,accuracy_score
 
 globals.initialize()
 
@@ -21,19 +21,11 @@ global train_N, test_N
 warnings.filterwarnings('ignore')
 useSavedFeatures = True
 saveFeatures = False
-<<<<<<< HEAD
-savedFeaturesFilename = 'saved_images_gray.pkl'
-=======
-savedFeaturesFilename = 'saved_features_all.npy'
->>>>>>> parent of 6258080 (added B1 solutions)
-train_N = 10000
-test_N = 2500
+savedFeaturesFilename = 'all_features_saved_5000.npy'
+train_N = 5000
+test_N = 1000
 
 # ---------------------FUNCTION DEFINITIONS-------------------------
-
-# globals.base_dir = os.path.dirname(__file__)
-# globals.saved_data_dir = os.path.join(globals.base_dir, 'saved_data')
-# full_output = ''
 
 def printWW(str):
     print(str)
@@ -78,27 +70,16 @@ start_time = time.time()
 
 train_N, test_N, tr_X, tr_y, te_X, te_y= get_data()
 
-gridSVM = mf.img_SVM(tr_X, tr_y)
-mf.processResults(gridSVM, te_X, te_y)
-with open(os.path.join(globals.saved_data_dir, 'saved_grid_SVM.pkl'), 'wb') as outp:
-    pickle.dump(gridSVM, outp, pickle.HIGHEST_PROTOCOL)
+model = svm.SVC(kernel='rbf', C=10000, gamma = 0.000001)
+model.fit(tr_X, tr_y)
+pred = model.predict(te_X)
 
+with open(os.path.join(globals.saved_data_dir, f'saved_results_final.pkl'), 'wb') as outp:
+    pickle.dump([pred, te_y], outp, pickle.HIGHEST_PROTOCOL)
 
-gridKNN = mf.img_kNN(tr_X, tr_y)
-mf.processResults(gridKNN, te_X, te_y)
-with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'wb') as outp:
-    pickle.dump(gridKNN, outp, pickle.HIGHEST_PROTOCOL)
+printWW(f'Accuracy: {accuracy_score(te_y, pred)}\n\n')
+printWW(f'Classification report: {classification_report(te_y, pred)}\n\n')
 
-<<<<<<< HEAD
-# gridNeural = mf.img_neural(tr_X, tr_y)
-mf.processNeuralResults(None, te_X, te_y)
-=======
->>>>>>> parent of 6258080 (added B1 solutions)
-
-gridRandom = mf.img_random_forest(tr_X, tr_y)
-mf.processResults(gridRandom, te_X, te_y, 'random_forest')
-with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'wb') as outp:
-    pickle.dump(gridRandom, outp, pickle.HIGHEST_PROTOCOL)
 
 printWW("\n\n--- %s seconds ---\n\n" % (time.time() - start_time))
 

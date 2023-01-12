@@ -4,3 +4,4 @@ report_stuff/*
 zip_files/*
 Pipfile
 Pipfile.lock
+tasks.pdf

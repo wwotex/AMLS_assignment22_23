@@ -5,7 +5,7 @@ import numpy as np
 import os
 import globals
 from sklearn.metrics import confusion_matrix
-
+from keras.models import load_model
 
 
 globals.initialize()
@@ -104,27 +104,30 @@ def plot_score_parameter(grid, model, param_name):
     plt.savefig(os.path.join(globals.image_dir, f'{model}_{param}.jpg'))
     plt.show()
 
+def plot_learning_curve_neural(model):
+    # plot the training and validation accuracy
+    plt.plot(model.history['accuracy'])
+    plt.plot(model.history['val_accuracy'])
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Validation'], loc='upper left')
+    plt.show()
+
 if __name__ == "__main__":
-<<<<<<< HEAD
     model = 'neural'
-    param = 'n_estimators'
+    param = 'epochs'
+
+    with open(os.path.join(globals.saved_data_dir, 'saved_model_history_neural.pkl'), 'rb') as inp:
+        model = pickle.load(inp)
+        plot_learning_curve_neural(model)
+
     # with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'rb') as inp:
     #     plot_learning_curve(pickle.load(inp), model, param)
 
     # with open(os.path.join(globals.saved_data_dir, 'saved_grid_random.pkl'), 'rb') as inp:
     #     plot_score_parameter(pickle.load(inp), model, param)
 
-    with open(os.path.join(globals.saved_data_dir, 'neural\\saved_results_neural.pkl'), 'rb') as inp:
-=======
-    model = 'knn'
-    param = 'n_neighbors'
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'rb') as inp:
-        plot_learning_curve(pickle.load(inp), model, param)
-
-    with open(os.path.join(globals.saved_data_dir, 'saved_grid_kNN.pkl'), 'rb') as inp:
-        plot_score_parameter(pickle.load(inp), model, param)
-
-    with open(os.path.join(globals.saved_data_dir, 'saved_results_kNN.pkl'), 'rb') as inp:
->>>>>>> parent of 6258080 (added B1 solutions)
+    with open(os.path.join(globals.saved_data_dir, 'saved_results_neural.pkl'), 'rb') as inp:
         results = pickle.load(inp)
         plot_confusion_matrix(results, model)
